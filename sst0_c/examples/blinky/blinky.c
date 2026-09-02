@@ -82,6 +82,7 @@ static void Blinky_dispatch(Blinky * const me, SST_Evt const * const e) {
         case TIMEOUT2_SIG: {
             BSP_ledOff();
             SST_TimeEvt_arm(&me->te1, BSP_TICKS_PER_SEC * 3U/4U, 0U);
+            DBC_ASSERT(__LINE__, SST_TimeEvt_isArmed(&me->te1));
             break;
         }
         default: {
@@ -99,6 +100,7 @@ static void Blinky_init(Blinky * const me, SST_Evt const * const ie) {
     (void)ie; /* unused parameter */
     SST_TimeEvt_arm(&me->te1, 1U,                          BSP_TICKS_PER_SEC);
     SST_TimeEvt_arm(&me->te2, 1U + (BSP_TICKS_PER_SEC/4U), BSP_TICKS_PER_SEC);
+    DBC_ASSERT(__LINE__, SST_TimeEvt_isArmed(&me->te1));
 }
 /*..........................................................................*/
 static void Blinky_dispatch(Blinky * const me, SST_Evt const * const e) {

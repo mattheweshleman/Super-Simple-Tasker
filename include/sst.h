@@ -124,6 +124,9 @@ void SST_TimeEvt_arm(
 bool SST_TimeEvt_disarm(
     SST_TimeEvt * const me);
 
+bool SST_TimeEvt_isArmed(
+    SST_TimeEvt * const me);
+
 void SST_TimeEvt_tick(void); /* static handle all instantiated time events */
 
 /* SST Kernel facilities ---------------------------------------------------*/
