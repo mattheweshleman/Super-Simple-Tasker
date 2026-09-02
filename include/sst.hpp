@@ -104,6 +104,7 @@ public:
     TimeEvt(Signal sig, Task *task);
     void arm(TCtr ctr, TCtr interval);
     bool disarm(void);
+    [[nodiscard]] bool isArmed() const;
 
     static void tick(void);
 };

@@ -68,6 +68,7 @@ void Blinky::dispatch(SST::Evt const * const e) {
         case TIMEOUT1_SIG: {
             BSP::ledOff();
             m_te2.arm(BSP::TICKS_PER_SEC*3U/4U, 0U);
+            DBC_ASSERT(__LINE__, m_te2.isArmed());
             break;
         }
         case TIMEOUT2_SIG: {

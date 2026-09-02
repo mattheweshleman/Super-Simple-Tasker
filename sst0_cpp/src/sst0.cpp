@@ -183,6 +183,14 @@ bool TimeEvt::disarm(void) {
     return status;
 }
 //............................................................................
+bool TimeEvt::isArmed() const {
+    SST_PORT_CRIT_STAT
+    SST_PORT_CRIT_ENTRY();
+    bool disarmed = (m_ctr == 0U) && (m_interval == 0U);
+    SST_PORT_CRIT_EXIT();
+    return !disarmed;
+}
+//............................................................................
 void TimeEvt::tick(void) {
     for (TimeEvt *t = timeEvt_head; t != nullptr; t = t->m_next) {
         SST_PORT_CRIT_STAT
