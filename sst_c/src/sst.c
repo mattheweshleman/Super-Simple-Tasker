@@ -134,6 +134,16 @@ bool SST_TimeEvt_disarm(SST_TimeEvt * const me) {
     return status;
 }
 /*..........................................................................*/
+bool SST_TimeEvt_isArmed(
+    SST_TimeEvt * const me)
+{
+    SST_PORT_CRIT_STAT
+    SST_PORT_CRIT_ENTRY();
+    bool disarmed = (me->ctr == 0U) && (me->interval == 0U);
+    SST_PORT_CRIT_EXIT();
+    return !disarmed;
+}
+/*..........................................................................*/
 void SST_TimeEvt_tick(void) {
     for (SST_TimeEvt *t = timeEvt_head;
          t != (SST_TimeEvt *)0;
